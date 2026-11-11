@@ -1,0 +1,27 @@
+name: New device support
+description: Help add a Week Aqua model that isn't supported yet
+labels: [new device]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks! See [Capturing traffic](https://github.com/imretomori/ha-week-aqua/blob/main/docs/PROTOCOL.md#capturing-traffic-for-other-models) for how to record what the app sends.
+  - type: input
+    id: model
+    attributes:
+      label: Model and advertised name
+      description: e.g. "M300 Pro, B3.0-M300pro-113"
+    validations:
+      required: true
+  - type: input
+    id: type
+    attributes:
+      label: Device type
+      description: The `type=` value from `python tools/weekaqua.py scan`, e.g. 5748
+  - type: textarea
+    id: capture
+    attributes:
+      label: Capture and notes
+      description: Attach `btsnoop_hci.log` and list what you did in the app, with times and values.
+    validations:
+      required: true

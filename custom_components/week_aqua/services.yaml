@@ -1,0 +1,27 @@
+set_schedule:
+  target:
+    entity:
+      integration: week_aqua
+      domain: light
+  fields:
+    on_time:
+      required: true
+      example: "08:00"
+      selector:
+        time:
+    off_time:
+      required: true
+      example: "20:00"
+      selector:
+        time:
+    ramp:
+      default: 0
+      selector:
+        select:
+          options: ["0", "30", "60", "90", "120", "150"]
+
+clear_schedule:
+  target:
+    entity:
+      integration: week_aqua
+      domain: light

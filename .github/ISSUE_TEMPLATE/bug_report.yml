@@ -1,0 +1,48 @@
+name: Bug report
+description: Something doesn't work as expected
+labels: [bug]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+      description: What did you do, what did you expect, and what happened instead?
+    validations:
+      required: true
+  - type: input
+    id: model
+    attributes:
+      label: Device model
+      description: Name shown in the Week Aqua app, e.g. B3.0-Mini9Pro or B8.0-ES350
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Integration version
+    validations:
+      required: true
+  - type: input
+    id: ha
+    attributes:
+      label: Home Assistant version
+    validations:
+      required: true
+  - type: dropdown
+    id: bluetooth
+    attributes:
+      label: Bluetooth connection
+      options:
+        - Local Bluetooth adapter
+        - ESPHome Bluetooth proxy
+        - Both / not sure
+    validations:
+      required: true
+  - type: textarea
+    id: diagnostics
+    attributes:
+      label: Diagnostics and debug log
+      description: |
+        Device page → ⋮ → Download diagnostics, plus a log with
+        `custom_components.week_aqua: debug`. Drag files here.
+      render: text

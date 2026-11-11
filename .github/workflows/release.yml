@@ -1,0 +1,19 @@
+name: Release
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: read
+
+jobs:
+  check-version:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Manifest version must match the release tag
+        run: |
+          tag="${GITHUB_REF_NAME#v}"
+          ver=$(jq -r .version custom_components/week_aqua/manifest.json)
+          test "$tag" = "$ver" || { echo "tag $tag != manifest $ver"; exit 1; }

@@ -1,0 +1,113 @@
+{
+  "config": {
+    "flow_title": "{name}",
+    "step": {
+      "user": {
+        "description": "Choose a Week Aqua device in Bluetooth range.",
+        "data": {
+          "address": "Device"
+        }
+      },
+      "bluetooth_confirm": {
+        "description": "Set up {name} ({kind})?"
+      },
+      "disclaimer": {
+        "title": "Use at your own risk",
+        "description": "This is an unofficial, community-made integration. It is not affiliated with, endorsed by or supported by the manufacturer of Week Aqua products. It controls your devices with a reverse-engineered protocol, which may contain errors.\n\nIt is provided \"as is\", without warranty of any kind (see the MIT license). The authors are not liable for any damage to your devices, aquarium, livestock or property, including damage caused by lights, pumps or schedules not behaving as expected. Always keep an eye on your tank's life support.\n\nYou are asked this only once, when adding your first device.",
+        "data": {
+          "risk_accepted": "I understand and use this integration at my own risk"
+        }
+      }
+    },
+    "abort": {
+      "already_configured": "Device is already configured",
+      "no_devices_found": "No supported Week Aqua devices found in range. Close the Week Aqua phone app (it holds the connection) and make sure a Bluetooth adapter or ESPHome Bluetooth proxy is near the tank.",
+      "not_supported": "This Week Aqua model is not supported yet."
+    },
+    "error": {
+      "must_accept": "You need to accept the disclaimer to use this integration."
+    }
+  },
+  "entity": {
+    "button": {
+      "sync_clock": {
+        "name": "Sync clock"
+      },
+      "feed": {
+        "name": "Feed pause"
+      }
+    },
+    "number": {
+      "feed_duration": {
+        "name": "Feed pause duration"
+      },
+      "channel_red": {
+        "name": "Red"
+      },
+      "channel_green": {
+        "name": "Green"
+      },
+      "channel_blue": {
+        "name": "Blue"
+      },
+      "channel_uv": {
+        "name": "UV"
+      }
+    },
+    "switch": {
+      "schedule": {
+        "name": "Built-in schedule"
+      }
+    },
+    "time": {
+      "schedule_on_time": {
+        "name": "Schedule on time"
+      },
+      "schedule_off_time": {
+        "name": "Schedule off time"
+      }
+    },
+    "select": {
+      "schedule_ramp": {
+        "name": "Sunrise/sunset length",
+        "state": {
+          "0": "Off",
+          "30": "30 min",
+          "60": "60 min",
+          "90": "90 min",
+          "120": "120 min",
+          "150": "150 min"
+        }
+      }
+    },
+    "text": {
+      "bluetooth_name": {
+        "name": "Bluetooth name"
+      }
+    }
+  },
+  "services": {
+    "set_schedule": {
+      "name": "Set built-in schedule",
+      "description": "Program and enable the lamp's own daily on/off window. It runs even when Home Assistant is offline. Same as the Built-in schedule switch and its time and length settings.",
+      "fields": {
+        "on_time": {
+          "name": "On time",
+          "description": "Time the lamp turns on."
+        },
+        "off_time": {
+          "name": "Off time",
+          "description": "Time the lamp turns off."
+        },
+        "ramp": {
+          "name": "Ramp",
+          "description": "Sunrise/sunset fade length in minutes."
+        }
+      }
+    },
+    "clear_schedule": {
+      "name": "Clear built-in schedule",
+      "description": "Turn off the lamp's built-in schedule (window 00:00-24:00) so only Home Assistant switches it."
+    }
+  }
+}

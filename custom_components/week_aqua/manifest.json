@@ -1,0 +1,27 @@
+{
+  "domain": "week_aqua",
+  "name": "Week Aqua",
+  "bluetooth": [
+    {
+      "manufacturer_id": 18007,
+      "connectable": true
+    },
+    {
+      "manufacturer_id": 20823,
+      "connectable": true
+    }
+  ],
+  "codeowners": [
+    "@imretomori"
+  ],
+  "config_flow": true,
+  "dependencies": [
+    "bluetooth_adapters"
+  ],
+  "documentation": "https://github.com/imretomori/ha-week-aqua",
+  "integration_type": "device",
+  "iot_class": "assumed_state",
+  "issue_tracker": "https://github.com/imretomori/ha-week-aqua/issues",
+  "requirements": [],
+  "version": "0.3.0"
+}
