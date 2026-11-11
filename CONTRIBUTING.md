@@ -5,7 +5,7 @@ captures from models that aren't supported yet, documentation and code.
 
 ## Reporting a bug
 
-Open a [bug report](https://github.com/imretomori/ha-week-aqua/issues/new?template=bug_report.yml)
+Open a [bug report](https://github.com/novamill/ha-week-aqua/issues/new?template=bug_report.yml)
 and include:
 
 - the diagnostics download (**device page → ⋮ → Download diagnostics**)
@@ -16,7 +16,7 @@ and include:
 The integration supports the R/G/B/UV lights (`5746`) and pumps (`5751`).
 Other models need captures of what the official app sends. See
 [Capturing traffic](docs/PROTOCOL.md#capturing-traffic-for-other-models),
-then open a [new device issue](https://github.com/imretomori/ha-week-aqua/issues/new?template=new_device.yml).
+then open a [new device issue](https://github.com/novamill/ha-week-aqua/issues/new?template=new_device.yml).
 
 **Never write to the `f000ffc0` service while experimenting.** It is the
 firmware-update channel and can brick the device.
@@ -26,7 +26,7 @@ firmware-update channel and can brick the device.
 You need Python 3.13 and [uv](https://docs.astral.sh/uv/) (or plain `pip`):
 
 ```sh
-git clone https://github.com/imretomori/ha-week-aqua
+git clone https://github.com/novamill/ha-week-aqua
 cd ha-week-aqua
 uv venv -p 3.13
 uv pip install -r requirements_test.txt

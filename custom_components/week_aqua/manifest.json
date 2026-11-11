@@ -18,10 +18,10 @@
   "dependencies": [
     "bluetooth_adapters"
   ],
-  "documentation": "https://github.com/imretomori/ha-week-aqua",
+  "documentation": "https://github.com/novamill/ha-week-aqua",
   "integration_type": "device",
   "iot_class": "assumed_state",
-  "issue_tracker": "https://github.com/imretomori/ha-week-aqua/issues",
+  "issue_tracker": "https://github.com/novamill/ha-week-aqua/issues",
   "requirements": [],
-  "version": "0.3.0"
+  "version": "0.3.1"
 }

@@ -10,11 +10,11 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/imretomori/ha-week-aqua/releases"><img src="https://img.shields.io/github/v/release/imretomori/ha-week-aqua?sort=semver" alt="Release"></a>
+  <a href="https://github.com/novamill/ha-week-aqua/releases"><img src="https://img.shields.io/github/v/release/novamill/ha-week-aqua?sort=semver" alt="Release"></a>
   <a href="https://hacs.xyz"><img src="https://img.shields.io/badge/HACS-Custom-41BDF5.svg" alt="HACS"></a>
-  <a href="https://github.com/imretomori/ha-week-aqua/actions/workflows/validate.yml"><img src="https://github.com/imretomori/ha-week-aqua/actions/workflows/validate.yml/badge.svg" alt="Validate"></a>
-  <a href="https://github.com/imretomori/ha-week-aqua/actions/workflows/tests.yml"><img src="https://github.com/imretomori/ha-week-aqua/actions/workflows/tests.yml/badge.svg" alt="Tests"></a>
-  <a href="LICENSE"><img src="https://img.shields.io/github/license/imretomori/ha-week-aqua" alt="License"></a>
+  <a href="https://github.com/novamill/ha-week-aqua/actions/workflows/validate.yml"><img src="https://github.com/novamill/ha-week-aqua/actions/workflows/validate.yml/badge.svg" alt="Validate"></a>
+  <a href="https://github.com/novamill/ha-week-aqua/actions/workflows/tests.yml"><img src="https://github.com/novamill/ha-week-aqua/actions/workflows/tests.yml/badge.svg" alt="Tests"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/github/license/novamill/ha-week-aqua" alt="License"></a>
 </p>
 
 ---
@@ -60,16 +60,16 @@ range with its type, including unsupported ones.
 
 ### HACS (recommended)
 
-[![Open your Home Assistant instance and open this repository in HACS.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=imretomori&repository=ha-week-aqua&category=integration)
+[![Open your Home Assistant instance and open this repository in HACS.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=novamill&repository=ha-week-aqua&category=integration)
 
 1. Click the button above, or in HACS open **⋮ → Custom repositories**, add
-   `https://github.com/imretomori/ha-week-aqua` with type **Integration**.
+   `https://github.com/novamill/ha-week-aqua` with type **Integration**.
 2. Download **Week Aqua** and restart Home Assistant.
 
 ### Manual
 
 Copy `custom_components/week_aqua` from the
-[latest release](https://github.com/imretomori/ha-week-aqua/releases/latest)
+[latest release](https://github.com/novamill/ha-week-aqua/releases/latest)
 into `<config>/custom_components/` and restart Home Assistant.
 
 ### Adding devices

@@ -5,7 +5,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        Thanks! See [Capturing traffic](https://github.com/imretomori/ha-week-aqua/blob/main/docs/PROTOCOL.md#capturing-traffic-for-other-models) for how to record what the app sends.
+        Thanks! See [Capturing traffic](https://github.com/novamill/ha-week-aqua/blob/main/docs/PROTOCOL.md#capturing-traffic-for-other-models) for how to record what the app sends.
   - type: input
     id: model
     attributes:

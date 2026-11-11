@@ -4,6 +4,13 @@ All notable changes to this project are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and the project uses
 [Semantic Versioning](https://semver.org/).
 
+## [0.3.1] - 2026-11-11
+
+### Changed
+
+- The project moved to [novamill/ha-week-aqua](https://github.com/novamill/ha-week-aqua).
+  If you added the old repository to HACS, remove it and add the new one.
+
 ## [0.3.0] - 2026-11-11
 
 First public release.
@@ -29,4 +36,5 @@ First public release.
   device is added.
 - `tools/weekaqua.py`, a command-line tool for testing without Home Assistant.
 
-[0.3.0]: https://github.com/imretomori/ha-week-aqua/releases/tag/v0.3.0
+[0.3.1]: https://github.com/novamill/ha-week-aqua/releases/tag/v0.3.1
+[0.3.0]: https://github.com/novamill/ha-week-aqua/releases/tag/v0.3.0
