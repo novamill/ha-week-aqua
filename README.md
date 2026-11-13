@@ -44,6 +44,30 @@
   daily, so built-in schedules survive drift and DST changes.
 - **Safe colours.** Applies the same LED power budget as the official app.
 
+## Screenshots
+
+<table>
+  <tr>
+    <td width="50%"><img src="docs/images/light-device.png" alt="Light device page: colour channel sliders and the built-in schedule with on time, off time and sunrise/sunset length"></td>
+    <td width="50%"><img src="docs/images/pump-device.png" alt="Pump device page: pump control, feed pause button and feed pause duration"></td>
+  </tr>
+  <tr>
+    <td align="center"><b>Light:</b> colour channels and the built-in daily schedule</td>
+    <td align="center"><b>Pump:</b> flow, feed pause and its duration</td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <td width="50%" align="center"><img src="docs/images/pump-flow.png" width="320" alt="Pump flow control set to 29 percent"></td>
+    <td width="50%" align="center"><img src="docs/images/pump-patterns.png" width="320" alt="Pump wave patterns: constant, wavy, surge, tide and cycle"></td>
+  </tr>
+  <tr>
+    <td align="center">Flow control</td>
+    <td align="center">Wave patterns</td>
+  </tr>
+</table>
+
 ## Supported devices
 
 | Device | Examples | Status |
