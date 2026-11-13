@@ -17,6 +17,10 @@
   <a href="LICENSE"><img src="https://img.shields.io/github/license/novamill/ha-week-aqua" alt="License"></a>
 </p>
 
+<p align="center">
+  <b>English</b> · <a href="README.hu.md">Magyar</a>
+</p>
+
 ---
 
 > [!WARNING]
