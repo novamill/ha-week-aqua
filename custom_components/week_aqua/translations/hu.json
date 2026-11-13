@@ -1,0 +1,128 @@
+{
+  "config": {
+    "flow_title": "{name}",
+    "step": {
+      "user": {
+        "description": "Válassz egy Bluetooth-hatótávon belüli Week Aqua eszközt.",
+        "data": {
+          "address": "Eszköz"
+        }
+      },
+      "bluetooth_confirm": {
+        "description": "Beállítod ezt az eszközt: {name} ({kind})?"
+      },
+      "disclaimer": {
+        "title": "Használat saját felelősségre",
+        "description": "Ez egy nem hivatalos, közösség által készített integráció. Nem áll kapcsolatban a Week Aqua termékek gyártójával, és a gyártó nem hagyta jóvá és nem támogatja. Az eszközöket visszafejtett protokollal vezérli, amely hibákat tartalmazhat.\n\nA szoftvert „ahogy van”, mindennemű garancia nélkül biztosítjuk (lásd az MIT licencet). A szerzők nem felelnek az eszközeidben, az akváriumodban, az élőlényekben vagy más vagyontárgyakban keletkezett károkért, beleértve azokat is, amelyeket a nem a várt módon működő lámpák, pumpák vagy időzítések okoznak. Mindig figyeld az akváriumod életfenntartó rendszereit.\n\nEzt csak egyszer, az első eszköz hozzáadásakor kérdezzük meg.",
+        "data": {
+          "risk_accepted": "Megértettem, és az integrációt a saját felelősségemre használom"
+        }
+      }
+    },
+    "abort": {
+      "already_configured": "Az eszköz már be van állítva",
+      "no_devices_found": "Nem található támogatott Week Aqua eszköz a hatótávon belül. Zárd be a Week Aqua telefonos alkalmazást (az foglalja a kapcsolatot), és ellenőrizd, hogy van-e Bluetooth-adapter vagy ESPHome Bluetooth proxy az akvárium közelében.",
+      "not_supported": "Ez a Week Aqua modell még nem támogatott."
+    },
+    "error": {
+      "must_accept": "Az integráció használatához el kell fogadnod a nyilatkozatot."
+    }
+  },
+  "entity": {
+    "button": {
+      "sync_clock": {
+        "name": "Óra szinkronizálása"
+      },
+      "feed": {
+        "name": "Etetési szünet"
+      }
+    },
+    "number": {
+      "feed_duration": {
+        "name": "Etetési szünet hossza"
+      },
+      "channel_red": {
+        "name": "Piros"
+      },
+      "channel_green": {
+        "name": "Zöld"
+      },
+      "channel_blue": {
+        "name": "Kék"
+      },
+      "channel_uv": {
+        "name": "UV"
+      }
+    },
+    "switch": {
+      "schedule": {
+        "name": "Beépített időzítés"
+      }
+    },
+    "time": {
+      "schedule_on_time": {
+        "name": "Időzítés bekapcsolási ideje"
+      },
+      "schedule_off_time": {
+        "name": "Időzítés kikapcsolási ideje"
+      }
+    },
+    "select": {
+      "schedule_ramp": {
+        "name": "Napfelkelte/naplemente hossza",
+        "state": {
+          "0": "Ki",
+          "30": "30 perc",
+          "60": "60 perc",
+          "90": "90 perc",
+          "120": "120 perc",
+          "150": "150 perc"
+        }
+      }
+    },
+    "text": {
+      "bluetooth_name": {
+        "name": "Bluetooth-név"
+      }
+    },
+    "fan": {
+      "pump": {
+        "state_attributes": {
+          "preset_mode": {
+            "state": {
+              "constant": "Állandó",
+              "wavy": "Hullámzó",
+              "surge": "Lökésszerű",
+              "tide": "Árapály",
+              "cycle": "Ciklikus"
+            }
+          }
+        }
+      }
+    }
+  },
+  "services": {
+    "set_schedule": {
+      "name": "Beépített időzítés beállítása",
+      "description": "Beprogramozza és bekapcsolja a lámpa saját napi be- és kikapcsolási időablakát. Akkor is működik, ha a Home Assistant nem fut. Ugyanaz, mint a Beépített időzítés kapcsoló és a hozzá tartozó idő- és hosszbeállítások.",
+      "fields": {
+        "on_time": {
+          "name": "Bekapcsolási idő",
+          "description": "Ekkor kapcsol be a lámpa."
+        },
+        "off_time": {
+          "name": "Kikapcsolási idő",
+          "description": "Ekkor kapcsol ki a lámpa."
+        },
+        "ramp": {
+          "name": "Áttűnés",
+          "description": "A napfelkelte/naplemente áttűnés hossza percben."
+        }
+      }
+    },
+    "clear_schedule": {
+      "name": "Beépített időzítés törlése",
+      "description": "Kikapcsolja a lámpa beépített időzítését (00:00–24:00 időablak), így csak a Home Assistant kapcsolja."
+    }
+  }
+}

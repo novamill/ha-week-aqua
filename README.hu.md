@@ -115,8 +115,9 @@ a `<config>/custom_components/` mappába, és indítsd újra a Home Assistantet.
    válaszd az **Integráció hozzáadása → Week Aqua** lehetőséget, és válassz a
    hatótávon belüli eszközök közül.
 3. Az első eszköz hozzáadásakor olvasd el a
-   [jogi nyilatkozatot](#jogi-nyilatkozat), és jelöld be az
-   **I understand and use this integration at my own risk** négyzetet. Enélkül
+   [jogi nyilatkozatot](#jogi-nyilatkozat), és jelöld be a
+   **Megértettem, és az integrációt a saját felelősségemre használom**
+   négyzetet. Enélkül
    a beállítás nem folytatódik. Csak egyszer kérdezi meg.
 
 **Követelmények:** Home Assistant 2025.2 vagy újabb, és egy Bluetooth-adapter
@@ -124,20 +125,20 @@ vagy ESPHome Bluetooth proxy az akvárium hatótávolságán belül.
 
 ## Mit kapsz
 
-Az entitások neve a Home Assistantben angolul jelenik meg; alább zárójelben a
-magyar jelentésük.
+Ha a Home Assistant nyelve magyar, az entitások, a beállítási lépések és a
+nyilatkozat is magyarul jelennek meg. Zárójelben az angol nevük.
 
 ### Lámpák
 
 | Entitás | Mire való |
 |---|---|
-| **Light** (lámpa) | Be/ki, fényerő és szín. A szín RGBW, és **a W az UV LED-eket vezérli**. A fényerő a legerősebb csatorna értéke. |
-| **Red / Green / Blue / UV** (piros / zöld / kék / UV) | Csatornánként egy 0–100%-os csúszka, mint az alkalmazásban. A csúszka mozgatása az új keverékkel bekapcsolja a lámpát. |
-| **Built-in schedule** (beépített időzítés) | Bekapcsolva a lámpa minden nap magától be- és kikapcsol, akkor is, ha a Home Assistant nem fut. |
-| **Schedule on time / off time** (bekapcsolási / kikapcsolási idő) | A napi időablak. A 00:00-s kikapcsolási idő éjfelet jelent. |
-| **Sunrise/sunset length** (napfelkelte/naplemente hossza) | Az áttűnés hossza: nincs, 30, 60, 90, 120 vagy 150 perc. Egy érték vonatkozik a napfelkeltére és a naplementére is. |
-| **Bluetooth name** (Bluetooth-név) | A név, amelyet a lámpa hirdet, és amelyet az alkalmazás mutat. Szerkesztésével átnevezheted a lámpát. |
-| **Sync clock** (óra szinkronizálása) | Most beállítja a lámpa óráját. Ez automatikusan is megtörténik, így ritkán van rá szükség. |
+| **Lámpa** (a lámpa saját neve) | Be/ki, fényerő és szín. A szín RGBW, és **a W az UV LED-eket vezérli**. A fényerő a legerősebb csatorna értéke. |
+| **Piros / Zöld / Kék / UV** (Red / Green / Blue / UV) | Csatornánként egy 0–100%-os csúszka, mint az alkalmazásban. A csúszka mozgatása az új keverékkel bekapcsolja a lámpát. |
+| **Beépített időzítés** (Built-in schedule) | Bekapcsolva a lámpa minden nap magától be- és kikapcsol, akkor is, ha a Home Assistant nem fut. |
+| **Időzítés bekapcsolási / kikapcsolási ideje** (Schedule on time / off time) | A napi időablak. A 00:00-s kikapcsolási idő éjfelet jelent. |
+| **Napfelkelte/naplemente hossza** (Sunrise/sunset length) | Az áttűnés hossza: nincs, 30, 60, 90, 120 vagy 150 perc. Egy érték vonatkozik a napfelkeltére és a naplementére is. |
+| **Bluetooth-név** (Bluetooth name) | A név, amelyet a lámpa hirdet, és amelyet az alkalmazás mutat. Szerkesztésével átnevezheted a lámpát. |
+| **Óra szinkronizálása** (Sync clock) | Most beállítja a lámpa óráját. Ez automatikusan is megtörténik, így ritkán van rá szükség. |
 
 A lámpa `red`, `green`, `blue` és `uv` attribútumai a teljesítménykorlát
 alkalmazása után ténylegesen elküldött értékeket mutatják. A lámpa meghajtói
@@ -149,10 +150,10 @@ változik.
 
 | Entitás | Mire való |
 |---|---|
-| **Fan** (ventilátor) | Áramlás 1–100% és hullámminta (`constant` állandó, `wavy` hullámzó, `surge` lökésszerű, `tide` árapály, `cycle` ciklikus). Kikapcsolva a pumpa leáll. Bekapcsolva visszaállítja az utolsó áramlást és mintát. |
-| **Feed pause** (etetési szünet) | Az etetési szünet idejére leállítja a pumpát. A pumpa magától újraindul. |
-| **Feed pause duration** (etetési szünet hossza) | 5–60 perc. |
-| **Bluetooth name**, **Sync clock** | Mint a lámpáknál. |
+| **Pumpa** (ventilátor entitás, a pumpa saját neve) | Áramlás 1–100% és hullámminta: Állandó, Hullámzó, Lökésszerű, Árapály, Ciklikus (automatizálásokban: `constant`, `wavy`, `surge`, `tide`, `cycle`). Kikapcsolva a pumpa leáll. Bekapcsolva visszaállítja az utolsó áramlást és mintát. |
+| **Etetési szünet** (Feed pause) | Az etetési szünet idejére leállítja a pumpát. A pumpa magától újraindul. |
+| **Etetési szünet hossza** (Feed pause duration) | 5–60 perc. |
+| **Bluetooth-név**, **Óra szinkronizálása** | Mint a lámpáknál. |
 
 ### Műveletek
 
@@ -169,11 +170,11 @@ Bluetooth-név: azt az eszközről olvassa be. Két megközelítés közül vál
 
 **A lámpa időzítse magát (mint az alkalmazásban).** Állítsd be a be- és
 kikapcsolási időt és a napfelkelte/naplemente hosszát, majd kapcsold be a
-**Built-in schedule** kapcsolót. A lámpa akkor is követi az időzítést, ha a
+**Beépített időzítés** kapcsolót. A lámpa akkor is követi az időzítést, ha a
 Home Assistant nem fut. A Home Assistant viszont nem látja, amikor a lámpa
 magától be- vagy kikapcsol.
 
-**A Home Assistant időzítse.** Hagyd kikapcsolva a **Built-in schedule**
+**A Home Assistant időzítse.** Hagyd kikapcsolva a **Beépített időzítés**
 kapcsolót, és használj automatizálásokat. Így bármit megvalósíthatsz: több
 színfázist naponta, UV holdfényt, a nap járását követő világítást, vagy a
 pumpa szüneteltetését etetéskor.
@@ -256,7 +257,7 @@ script:
 |---|---|
 | Az eszközt nem ismeri fel | Zárd be a Week Aqua alkalmazást, mert az foglalja a kapcsolatot. Ellenőrizd, hogy van-e Bluetooth-adapter vagy proxy az akvárium közelében. Egyes pumpák csak néhány másodpercenként hirdetik magukat, ezért várj egy percet. |
 | Az eszköz elérhetetlenné válik, vagy a parancsok nem mennek át | Általában a hatótávolság a gond: a víz, az üveg és a szekrény elnyeli a Bluetooth-jelet. Tegyél egy `active: true` beállítású [ESPHome Bluetooth proxyt](https://esphome.io/components/bluetooth_proxy.html) az akvárium közelébe. |
-| A lámpa rossz időben kapcsol | Nyomd meg a **Sync clock** gombot, és ellenőrizd a Home Assistant időzónáját. Az órák egyébként naponta 03:07-kor szinkronizálódnak. |
+| A lámpa rossz időben kapcsol | Nyomd meg az **Óra szinkronizálása** gombot, és ellenőrizd a Home Assistant időzónáját. Az órák egyébként naponta 03:07-kor szinkronizálódnak. |
 | A Home Assistant állapota nem egyezik a lámpáéval | A lámpát a telefonos alkalmazásból vagy a beépített időzítése változtatta meg. Állítsd be egyszer a Home Assistantből, és újra egyezni fognak. |
 
 Hiba bejelentésekor csatold a diagnosztikát (**eszközoldal → ⋮ → Diagnosztika

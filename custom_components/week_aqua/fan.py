@@ -37,6 +37,7 @@ class WeekAquaPump(WeekAquaEntity, FanEntity, RestoreEntity):
     """Filter pump with flow control and wave patterns."""
 
     _attr_name = None
+    _attr_translation_key = "pump"
     _attr_supported_features = (
         FanEntityFeature.SET_SPEED
         | FanEntityFeature.PRESET_MODE

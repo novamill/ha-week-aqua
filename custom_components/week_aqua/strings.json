@@ -84,6 +84,21 @@
       "bluetooth_name": {
         "name": "Bluetooth name"
       }
+    },
+    "fan": {
+      "pump": {
+        "state_attributes": {
+          "preset_mode": {
+            "state": {
+              "constant": "Constant",
+              "wavy": "Wavy",
+              "surge": "Surge",
+              "tide": "Tide",
+              "cycle": "Cycle"
+            }
+          }
+        }
+      }
     }
   },
   "services": {
