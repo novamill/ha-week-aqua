@@ -112,7 +112,7 @@ def test_light_power_stays_within_both_models():
     # ones (94 + blue), so blue must be scaled down under the stricter model.
     levels = p.limit_light_power((100, 100, 40, 0))
     for weights in p.LIGHT_POWER_MODELS:
-        assert sum(lv * w for lv, w in zip(levels, weights)) <= p.LIGHT_POWER_BUDGET + 1e-9
+        assert sum(lv * w for lv, w in zip(levels, weights, strict=True)) <= p.LIGHT_POWER_BUDGET + 1e-9
     assert levels[2] < 40
     # Single channels at full are always allowed.
     for i in range(4):
