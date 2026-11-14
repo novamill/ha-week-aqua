@@ -123,16 +123,26 @@ def cmd_auto_mode() -> bytes:
 
 LIGHT_CHANNELS = ("red", "green", "blue", "uv")
 LIGHT_LEVEL_MAX = 0xEB  # 100 %
-# Relative power draw of each channel, used by the app to cap total load.
-LIGHT_POWER_WEIGHTS = (0.39, 0.41, 0.53, 0.11)
+# Relative power draw of each channel (R, G, B, UV), used by the app to cap
+# the total load at 100. Two models disagree on which channel gets which weight:
+# the Android app's code (3.0.25) and the load shown by the macOS app (3.0.28).
+# A mix must stay within both, so whichever is right, the lamp stays within the
+# app's limit.
+LIGHT_POWER_MODELS = (
+    (0.39, 0.41, 0.53, 0.11),
+    (0.41, 0.53, 0.39, 0.11),
+)
 LIGHT_POWER_BUDGET = 100.0
 
 RAMP_MINUTES_TO_CODE = {0: 0, 30: 1, 60: 2, 90: 3, 120: 4, 150: 5}
 
 
 def light_power_load(levels: tuple[float, float, float, float]) -> float:
-    """Return the weighted power load (app limit is 100)."""
-    return sum(level * weight for level, weight in zip(levels, LIGHT_POWER_WEIGHTS, strict=True))
+    """Return the weighted power load under the stricter model (app limit is 100)."""
+    return max(
+        sum(level * weight for level, weight in zip(levels, weights, strict=True))
+        for weights in LIGHT_POWER_MODELS
+    )
 
 
 def limit_light_power(
@@ -211,12 +221,15 @@ PUMP_FEED_MINUTES = tuple(range(5, 61, 5))
 
 
 def pump_power_byte(percent: int) -> int:
-    """Map 0-100 % to the pump's power byte (0 = stopped, 1-100 -> 0x30..0xF0)."""
+    """Map 0-100 % to the pump's power byte (0 = stopped, 1-100 -> 0x32..0xF0).
+
+    Rounded to nearest, as the app does: 30 % is 0x6A.
+    """
     if not 0 <= percent <= 100:
         raise ValueError("percent must be 0-100")
     if percent == 0:
         return 0
-    return PUMP_POWER_MIN + (PUMP_POWER_MAX - PUMP_POWER_MIN) * percent // 100
+    return PUMP_POWER_MIN + ((PUMP_POWER_MAX - PUMP_POWER_MIN) * percent + 50) // 100
 
 
 def cmd_pump(mode: PumpMode, percent: int) -> bytes:

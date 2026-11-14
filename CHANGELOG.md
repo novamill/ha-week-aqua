@@ -4,12 +4,19 @@ All notable changes to this project are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and the project uses
 [Semantic Versioning](https://semver.org/).
 
-## [Unreleased]
+## [0.3.2] - 2026-11-14
 
 ### Added
 
 - Hungarian translation.
 - Translated names for the pump's wave patterns.
+
+### Changed
+
+- Pump flow is rounded to the nearest step, matching the official app exactly
+  (e.g. 30 % now sends `0x6A` instead of `0x69`).
+- Light colour mixes are kept within both known versions of the app's LED
+  power limit. Very bright mixes may be scaled down slightly more than before.
 
 ## [0.3.1] - 2026-11-13
 
@@ -47,5 +54,6 @@ First public release.
   device is added.
 - `tools/weekaqua.py`, a command-line tool for testing without Home Assistant.
 
+[0.3.2]: https://github.com/novamill/ha-week-aqua/releases/tag/v0.3.2
 [0.3.1]: https://github.com/novamill/ha-week-aqua/releases/tag/v0.3.1
 [0.3.0]: https://github.com/novamill/ha-week-aqua/releases/tag/v0.3.0

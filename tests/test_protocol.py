@@ -68,7 +68,7 @@ def test_pump_frames():
     assert p.cmd_pump(p.PumpMode.CONSTANT, 0) == h("fbf9005555555555")
     assert p.cmd_pump(p.PumpMode.CONSTANT, 100) == h("fbf9f05555555555")
     assert p.cmd_pump(p.PumpMode.SURGE, 50) == h("fbfb905555555555")
-    assert p.cmd_pump(p.PumpMode.TIDE, 1) == h("fbfd315555555555")
+    assert p.cmd_pump(p.PumpMode.TIDE, 1) == h("fbfd325555555555")
     assert p.cmd_pump(p.PumpMode.CYCLE, 100) == h("fbfef05555555555")
     assert p.cmd_pump(p.PumpMode.WAVY, 100) == h("fbfaf05555555555")
 
@@ -98,3 +98,24 @@ def test_set_name() -> None:
     for bad in ("", "x" * 21, "Akvárium"):
         with pytest.raises(ValueError):
             cmd_set_name(bad)
+
+
+def test_pump_power_matches_app_captures():
+    # Flow bytes the official app sent, rounded to nearest (30 % is 0x6A).
+    captured = {0: 0x00, 10: 0x43, 20: 0x56, 30: 0x6A, 50: 0x90, 100: 0xF0}
+    for percent, byte in captured.items():
+        assert p.pump_power_byte(percent) == byte
+
+
+def test_light_power_stays_within_both_models():
+    # Red and green at full fit the Android weights (80) but not the macOS
+    # ones (94 + blue), so blue must be scaled down under the stricter model.
+    levels = p.limit_light_power((100, 100, 40, 0))
+    for weights in p.LIGHT_POWER_MODELS:
+        assert sum(lv * w for lv, w in zip(levels, weights, strict=True)) <= p.LIGHT_POWER_BUDGET + 1e-9
+    assert levels[2] < 40
+    # Single channels at full are always allowed.
+    for i in range(4):
+        single = [0.0] * 4
+        single[i] = 100.0
+        assert p.limit_light_power(tuple(single)) == tuple(single)

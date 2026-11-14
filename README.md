@@ -129,9 +129,11 @@ ESPHome Bluetooth proxy within range of the tank.
 | **Sync clock** | Sets the lamp's clock now. This happens automatically, so you rarely need it. |
 
 The light's `red`, `green`, `blue` and `uv` attributes show the output actually
-sent after the power budget. The lamp's drivers allow
-`0.39·R + 0.41·G + 0.53·B + 0.11·UV ≤ 100`. If a mix asks for more, all
-channels are scaled down together, so the colour stays the same.
+sent after the power budget. The official app limits the
+total LED load, and two versions of it weight the channels differently (see
+[PROTOCOL.md](docs/PROTOCOL.md#rgbuv-light-5746)). The integration keeps every
+mix within both limits. If a mix asks for more, all channels are scaled down
+together, so the colour stays the same.
 
 ### Pumps
 

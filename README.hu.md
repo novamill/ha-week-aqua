@@ -141,10 +141,11 @@ nyilatkozat is magyarul jelennek meg. Zárójelben az angol nevük.
 | **Óra szinkronizálása** (Sync clock) | Most beállítja a lámpa óráját. Ez automatikusan is megtörténik, így ritkán van rá szükség. |
 
 A lámpa `red`, `green`, `blue` és `uv` attribútumai a teljesítménykorlát
-alkalmazása után ténylegesen elküldött értékeket mutatják. A lámpa meghajtói
-ennyit engednek: `0.39·R + 0.41·G + 0.53·B + 0.11·UV ≤ 100`. Ha egy keverék
-többet kér, az összes csatornát azonos arányban csökkenti, így a szín nem
-változik.
+alkalmazása után ténylegesen elküldött értékeket mutatják. A hivatalos alkalmazás
+korlátozza a LED-ek összterhelését, és két verziója eltérően súlyozza a
+csatornákat (lásd [PROTOCOL.md](docs/PROTOCOL.md#rgbuv-light-5746), angol). Az
+integráció minden keveréket mindkét korláton belül tart. Ha egy keverék többet
+kér, az összes csatornát azonos arányban csökkenti, így a szín nem változik.
 
 ### Pumpák
 

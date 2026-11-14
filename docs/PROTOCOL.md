@@ -100,14 +100,17 @@ can toggle; it always sends `00` for this model.
 
 The lamp runs its window at the channel levels last sent with `FB F9`.
 
-**Power budget.** The app never sends a mix where
+**Power budget.** The app caps the total LED load at 100. Two sources give
+the same weights on different channels (R, G, B, UV in percent):
 
 ```
-0.39·R + 0.41·G + 0.53·B + 0.11·UV > 100      (R, G, B, UV in percent)
+Android app 3.0.25 (code):        0.39·R + 0.41·G + 0.53·B + 0.11·UV ≤ 100
+macOS app 3.0.28 (displayed load): 0.41·R + 0.53·G + 0.39·B + 0.11·UV ≤ 100
 ```
 
-The board takes 9 W at 5 V. When a requested mix exceeds the budget, the
-integration scales all four channels down by the same factor.
+These are app limits, not electrical measurements. The board takes 9 W at
+5 V. The integration keeps every mix within both. When a requested mix
+exceeds either, it scales all four channels down by the same factor.
 
 ### Pump (`5751`)
 
@@ -129,8 +132,8 @@ The pattern byte `mm`:
 Power byte `pp`:
 
 * `00` stops the pump.
-* Otherwise `pp = 0x30 + 192 × percent // 100`, giving `0x31`–`0xF0`.
-* Example: 38 % → `0x78`.
+* Otherwise `pp = round(0x30 + 1.92 × percent)`, giving `0x32`–`0xF0`.
+* Examples from the app: 10 % → `0x43`, 30 % → `0x6A`, 50 % → `0x90`.
 
 ## Renaming
 
