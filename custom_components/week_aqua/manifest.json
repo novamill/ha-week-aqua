@@ -23,5 +23,5 @@
   "iot_class": "assumed_state",
   "issue_tracker": "https://github.com/novamill/ha-week-aqua/issues",
   "requirements": [],
-  "version": "0.3.1"
+  "version": "0.3.2"
 }
