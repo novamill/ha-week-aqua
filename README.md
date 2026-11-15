@@ -281,6 +281,11 @@ captures, is documented in [docs/PROTOCOL.md](docs/PROTOCOL.md).
 Bug reports, captures from other models and pull requests are welcome. See
 [CONTRIBUTING.md](CONTRIBUTING.md).
 
+### Contributors
+
+- **Zoltán Hatos:** protocol research and app captures, used to verify the
+  pump flow encoding and the LED power limit.
+
 ## Disclaimer
 
 **By installing or using this integration you agree to use it at your own
