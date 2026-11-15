@@ -297,6 +297,12 @@ Szívesen fogadunk hibajelentéseket, más modellekről készült felvételeket 
 pull requesteket. Lásd a [CONTRIBUTING.md](CONTRIBUTING.md) fájlt (angol
 nyelvű).
 
+### Közreműködők
+
+- **Hatos Zoltán:** protokollkutatás és alkalmazásból készült felvételek,
+  amelyekkel a pumpa áramlásának kódolását és a LED-teljesítménykorlátot
+  ellenőriztük.
+
 ## Jogi nyilatkozat
 
 **Az integráció telepítésével vagy használatával elfogadod, hogy azt a saját
