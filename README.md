@@ -47,6 +47,8 @@
 - **Correct clock.** Each device's clock is synced on every connection and
   daily, so built-in schedules survive drift and DST changes.
 - **Safe colours.** Applies the same LED power budget as the official app.
+- **Dashboard cards.** A light card and a pump card with every setting on one
+  card, installed together with the integration.
 
 ## Screenshots
 
@@ -150,6 +152,48 @@ together, so the colour stays the same.
 |---|---|
 | `week_aqua.set_schedule` | Set on time, off time and fade length, and turn the built-in schedule on, in one call. |
 | `week_aqua.clear_schedule` | Turn the built-in schedule off, so only Home Assistant switches the lamp. |
+
+## Dashboard cards
+
+<p align="center">
+  <img src="docs/images/cards.png" width="760" alt="Week Aqua light card with brightness, colour channels and built-in schedule, and pump card with strength, mode buttons and feed pause">
+</p>
+
+The integration includes two dashboard cards. They are loaded automatically,
+so there is nothing else to install. After installing or updating, reload the
+browser page once.
+
+**Light card:**
+- on/off switch
+- **Brightness** slider: dims or brightens the whole mix and keeps the
+  proportions you set with the colour sliders
+- one slider per colour channel, with a note when the power limit scales the
+  output down
+- the built-in schedule: on and off time, and sunrise/sunset length as buttons
+
+**Pump card:**
+- on/off switch and a **Strength** slider
+- one button per wave pattern
+- feed pause: set the duration with **−** / **+** and press **Feed**. The card
+  shows how long the pause has left.
+
+To add one, edit a dashboard, choose **Add card** and search for **Week Aqua**.
+Or add it in YAML:
+
+```yaml
+type: custom:week-aqua-light-card
+entity: light.mini9pro_30
+```
+
+```yaml
+type: custom:week-aqua-pump-card
+entity: fan.es350
+name: Filter        # optional
+```
+
+Only the light or fan entity is needed. The card finds the device's other
+entities by itself. The cards follow your Home Assistant theme and language
+(English and Hungarian).
 
 ## Choosing how to schedule your lights
 

@@ -4,6 +4,22 @@ All notable changes to this project are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and the project uses
 [Semantic Versioning](https://semver.org/).
 
+## [0.4.0] - 2026-11-25
+
+### Added
+
+- Dashboard cards for lights and pumps, installed with the integration:
+  - light card: brightness slider that keeps the colour proportions, one
+    slider per channel, the built-in schedule and sunrise/sunset buttons
+  - pump card: strength slider, one button per wave pattern, and feed pause
+    with a countdown
+  - English and Hungarian text
+
+### Changed
+
+- Changing only the light's brightness now scales the stored channel mix
+  exactly, so the proportions don't drift.
+
 ## [0.3.2] - 2026-11-14
 
 ### Added
@@ -54,6 +70,7 @@ First public release.
   device is added.
 - `tools/weekaqua.py`, a command-line tool for testing without Home Assistant.
 
+[0.4.0]: https://github.com/novamill/ha-week-aqua/releases/tag/v0.4.0
 [0.3.2]: https://github.com/novamill/ha-week-aqua/releases/tag/v0.3.2
 [0.3.1]: https://github.com/novamill/ha-week-aqua/releases/tag/v0.3.1
 [0.3.0]: https://github.com/novamill/ha-week-aqua/releases/tag/v0.3.0

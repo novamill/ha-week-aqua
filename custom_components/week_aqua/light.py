@@ -101,6 +101,15 @@ class WeekAquaLight(WeekAquaLampEntity, LightEntity):
         if ATTR_RGBW_COLOR not in kwargs and ATTR_BRIGHTNESS not in kwargs:
             await self._lamp.async_set_light(True)
             return
+        if ATTR_RGBW_COLOR not in kwargs and max(self._levels) > 0:
+            # Brightness only: scale the stored mix exactly, keeping the
+            # proportions set with the channel sliders.
+            target = kwargs[ATTR_BRIGHTNESS] / 255 * 100
+            factor = target / max(self._levels)
+            await self._lamp.async_set_light(
+                True, {ch: v * factor for ch, v in zip(LIGHT_CHANNELS, self._levels, strict=True)}
+            )
+            return
         rgbw = kwargs.get(ATTR_RGBW_COLOR, self.rgbw_color)
         brightness = kwargs.get(ATTR_BRIGHTNESS, self.brightness)
         if not any(rgbw):

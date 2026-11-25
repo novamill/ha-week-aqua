@@ -51,6 +51,8 @@
   időszámítás váltását is követi.
 - **Biztonságos színek.** Ugyanazt a LED-teljesítménykorlátot alkalmazza, mint
   a hivatalos alkalmazás.
+- **Vezérlőkártyák.** Egy lámpa- és egy pumpakártya, minden beállítással
+  egy helyen, az integrációval együtt települnek.
 
 ## Képernyőképek
 
@@ -162,6 +164,49 @@ kér, az összes csatornát azonos arányban csökkenti, így a szín nem válto
 |---|---|
 | `week_aqua.set_schedule` | Egy hívással beállítja a be- és kikapcsolási időt, az áttűnés hosszát, és bekapcsolja a beépített időzítést. |
 | `week_aqua.clear_schedule` | Kikapcsolja a beépített időzítést, így a lámpát csak a Home Assistant kapcsolja. |
+
+## Vezérlőkártyák
+
+<p align="center">
+  <img src="docs/images/cards-hu.png" width="760" alt="Week Aqua lámpakártya fényerővel, színcsatornákkal és beépített időzítéssel, valamint pumpakártya erősséggel, üzemmódgombokkal és etetési szünettel">
+</p>
+
+Az integráció két vezérlőkártyát tartalmaz. Automatikusan betöltődnek, így
+semmi mást nem kell telepíteni. Telepítés vagy frissítés után egyszer töltsd
+újra a böngészőben az oldalt.
+
+**Lámpakártya:**
+- be/ki kapcsoló
+- **Fényerő** csúszka: a teljes keveréket halványítja vagy erősíti, és
+  megtartja a színcsúszkákkal beállított arányokat
+- színcsatornánként egy csúszka, és egy figyelmeztetés, ha a
+  teljesítménykorlát csökkenti a kimenetet
+- a beépített időzítés: be- és kikapcsolási idő, valamint a
+  napfelkelte/naplemente hossza gombokkal
+
+**Pumpakártya:**
+- be/ki kapcsoló és **Erősség** csúszka
+- hullámmintánként egy gomb
+- etetési szünet: a hosszát a **−** / **+** gombokkal állíthatod, majd nyomd
+  meg az **Etetés** gombot. A kártya mutatja, mennyi van még hátra.
+
+Hozzáadáshoz szerkeszd az irányítópultot, válaszd a **Kártya hozzáadása**
+lehetőséget, és keress rá: **Week Aqua**. Vagy add hozzá YAML-ben:
+
+```yaml
+type: custom:week-aqua-light-card
+entity: light.mini9pro_30
+```
+
+```yaml
+type: custom:week-aqua-pump-card
+entity: fan.es350
+name: Szűrő        # nem kötelező
+```
+
+Csak a lámpa vagy a pumpa (ventilátor) entitását kell megadni. A kártya
+magától megtalálja az eszköz többi entitását. A kártyák a Home Assistant
+témáját és nyelvét követik (angol és magyar).
 
 ## Hogyan időzítsd a lámpákat
 

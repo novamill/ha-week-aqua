@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from unittest.mock import patch
+from unittest.mock import AsyncMock, MagicMock, patch
 
 from homeassistant import config_entries
 from homeassistant.const import ATTR_ENTITY_ID, CONF_ADDRESS
@@ -262,6 +262,10 @@ async def test_light_channel_sliders(hass: HomeAssistant, mock_send) -> None:
         "light", "turn_on", {ATTR_ENTITY_ID: "light.mini9pro_30", "brightness": 128}, blocking=True
     )
     assert hass.states.get("number.mini9pro_30_blue").state == "50"
+    # ... keeping the proportions set with the sliders.
+    assert hass.states.get("number.mini9pro_30_red").state == "25"
+    last = bytes.fromhex(sent_frames(mock_send)[-1])
+    assert last[2:6] == bytes([59, 0, 118, 0])
 
     # Settings survive a restart of the integration.
     assert await hass.config_entries.async_reload(entry.entry_id)
@@ -324,3 +328,22 @@ async def test_bluetooth_name(hass: HomeAssistant, mock_send) -> None:
     )
     assert mock_send.call_args.args[1] == b"!%!%:ADV_NAME:B8.0-Filter"
     assert hass.states.get(entity_id).state == "B8.0-Filter"
+
+
+async def test_dashboard_cards_are_served(hass: HomeAssistant) -> None:
+    from homeassistant.components.frontend import DATA_EXTRA_MODULE_URL, UrlManager
+
+    from custom_components.week_aqua import CARDS_PATH, CARDS_URL, async_setup
+
+    assert CARDS_PATH.is_file()
+    hass.config.components.add("frontend")
+    hass.data[DATA_EXTRA_MODULE_URL] = UrlManager(lambda *_: None, [])
+    hass.http = MagicMock(async_register_static_paths=AsyncMock())
+
+    assert await async_setup(hass, {})
+
+    (paths,) = hass.http.async_register_static_paths.call_args.args
+    assert paths[0].url_path == CARDS_URL
+    assert paths[0].path == str(CARDS_PATH)
+    (url,) = hass.data[DATA_EXTRA_MODULE_URL].urls
+    assert url.startswith(f"{CARDS_URL}?v=")
