@@ -1,6 +1,10 @@
 {
   "domain": "week_aqua",
   "name": "Week Aqua",
+  "after_dependencies": [
+    "frontend",
+    "http"
+  ],
   "bluetooth": [
     {
       "manufacturer_id": 18007,
@@ -13,10 +17,6 @@
   ],
   "codeowners": [
     "@imretomori"
-  ],
-  "after_dependencies": [
-    "frontend",
-    "http"
   ],
   "config_flow": true,
   "dependencies": [
