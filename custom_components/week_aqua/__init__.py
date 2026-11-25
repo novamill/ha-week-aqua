@@ -4,15 +4,19 @@ from __future__ import annotations
 
 from datetime import datetime
 import logging
+from pathlib import Path
 
 from homeassistant.components import bluetooth
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import CONF_ADDRESS, Platform
 from homeassistant.core import HomeAssistant, callback
 from homeassistant.exceptions import ConfigEntryNotReady
+from homeassistant.helpers import config_validation as cv
 from homeassistant.helpers.event import async_track_time_change
+from homeassistant.helpers.typing import ConfigType
+from homeassistant.loader import async_get_integration
 
-from .const import CLOCK_SYNC_HOUR, CLOCK_SYNC_MINUTE, CONF_KIND
+from .const import CLOCK_SYNC_HOUR, CLOCK_SYNC_MINUTE, CONF_KIND, DOMAIN
 from .device import WeekAquaDevice, WeekAquaError
 from .lamp import LampController, async_remove_settings
 from .protocol import DeviceKind
@@ -33,6 +37,27 @@ PLATFORMS_BY_KIND: dict[DeviceKind, list[Platform]] = {
 }
 
 type WeekAquaConfigEntry = ConfigEntry[WeekAquaDevice]
+
+CONFIG_SCHEMA = cv.config_entry_only_config_schema(DOMAIN)
+
+CARDS_URL = f"/{DOMAIN}/week-aqua-cards.js"
+CARDS_PATH = Path(__file__).parent / "frontend" / "week-aqua-cards.js"
+
+
+async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool:
+    """Serve the dashboard cards and load them in every browser."""
+    if hass.http is None or "frontend" not in hass.config.components:
+        return True
+    from homeassistant.components.frontend import add_extra_js_url  # noqa: PLC0415
+    from homeassistant.components.http import StaticPathConfig  # noqa: PLC0415
+
+    version = (await async_get_integration(hass, DOMAIN)).version
+    await hass.http.async_register_static_paths(
+        [StaticPathConfig(CARDS_URL, str(CARDS_PATH), cache_headers=True)]
+    )
+    # The version in the URL makes browsers fetch the new file after an update.
+    add_extra_js_url(hass, f"{CARDS_URL}?v={version}")
+    return True
 
 
 async def async_setup_entry(hass: HomeAssistant, entry: WeekAquaConfigEntry) -> bool:
